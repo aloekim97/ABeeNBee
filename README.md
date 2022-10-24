@@ -1474,4 +1474,4 @@ Return spots filtered by query parameters.
       }
     }
     ```
-    ![Alt Text](Screen%20Shot%202022-10-19%20at%202.27.44%20PM.png)
+    ![Alt Text](airbnb_dbdiagram.jpeg)
