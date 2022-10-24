@@ -8,12 +8,15 @@ module.exports = (sequelize, DataTypes) => {
       const { id, username, email } = this;
       return {id, username, email};
     }
+
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
+
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
+
     static async login({ credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
@@ -28,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         return await User.scope('currentUser').findByPk(user.id);
       }
     }
+
     static async signup({ username, email, password, firstName, lastName }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
@@ -44,6 +48,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
+
+  
   User.init({
     username: {
       type: DataTypes.STRING,
