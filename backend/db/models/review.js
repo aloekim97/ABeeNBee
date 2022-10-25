@@ -24,12 +24,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     userId: {
       type: Sequelize.INTEGER,
-      onDelete: 'CASCADE'
+      onDelete: 'CASCADE',
+      allowNull: false
     },
     review: {
-      type: Sequelize.STRING,
-      allowNull: false,
-
+      type: Sequelize.STRING
     },
     stars: {
       type: Sequelize.INTEGER,
