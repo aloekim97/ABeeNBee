@@ -82,7 +82,7 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
     const {user} = req;
 
     const booking = await Booking.findByPk(bookingId)
-    userId = user.id
+    userId = parseInt(user.id)
     bookingUserId = parseInt(booking.userId)
 
     if(booking && bookingUserId === userId) {
