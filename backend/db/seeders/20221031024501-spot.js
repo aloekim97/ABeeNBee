@@ -62,3 +62,4 @@ module.exports = {
      await queryInterface.bulkDelete("Spots")
   }
 };
+
