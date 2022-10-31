@@ -4,6 +4,7 @@ const {check} = require('express-validator')
 const {handleValidationErrors } = require('../../utils/validation.js');
 const {requireAuth, restoreUser} = require('../../utils/auth.js');
 const {User, Spot, SpotImage, Review, ReviewImage, Booking, Sequelize} = require("../../db/models");
+const {Op} = require('sequelize')
 const router = express.Router();
 
 //get all current user's bookings
@@ -70,7 +71,7 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
         }
         const booked = await Booking.findOne({
             where : {
-                [Op.or]: {startDay, endDay}
+                [Op.or]: {startDate: startDay, endDate: endDay}
             }
         })
         if(booked) {
