@@ -103,19 +103,23 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
     // userId = parseInt(user.id)
     // bookingUserId = parseInt(booking.userId)
 
-    if(booking && parseInt(booking.userId) ===parseInt(user.id)) {
-        await booking.delete();
-        res.json({message: "Successfully deleted", statusCode: 200})
+    if(booking && parseInt(booking.userId) !== parseInt(user.id)) {
+        const err = new Error(`Forbidden`)
+        err.status = 403
+        return next(err)
     } 
-    if(!booking) {
-        const err = new Error(`Booking couldn't be found`)
-        err.status = 404;
-        return next(error)
-    }
     if(booking.startDate < new Date()) {
         const err = new Error(`Bookings that have been started can't be deleted`)
         err.status = 403;
         return next(error)
+    }
+    if(!booking) {
+        const err = new Error(`Booking couldn't be found`)
+        err.status = 404;
+        return next(error)
+    } else {
+        await booking.destroy();
+        return res.json({message: "Successfully deleted", statusCode: 200})
     }
 })
 module.exports = router;

@@ -16,10 +16,10 @@ router.delete('/:imageId', requireAuth, async(req, res, next) => {
             {model: Spot, attributes: ['ownerId']}
         ]
     })
-    userId = parseInt(user.id)
-    spotOwnerId = parseInt(img.Spot.spotOwnerId)
+    // userId = parseInt(user.id)
+    // spotOwnerId = parseInt(img.Spot.spotOwnerId)
 
-    if(img && spotOwnerId !== userId) {
+    if(img && parseInt(img.Spot.ownerId) !== parseInt(user.Id)) {
         const err = new Error(`Forbidden`)
         err.status = 403
         return next(err)
