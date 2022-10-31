@@ -23,7 +23,7 @@ module.exports = {
       lng: 118.2437,
       name: "house 1",
       description: "a great place to be",
-      price: 200
+      price: 200.00
     },
     {
       ownerId: 2,
@@ -35,7 +35,7 @@ module.exports = {
       lng: 118.2437,
       name: "house 2",
       description: "a great place to be",
-      price: 200
+      price: 300.00
     },
     {
       ownerId: 3,
@@ -47,7 +47,7 @@ module.exports = {
       lng: 118.2437,
       name: "house 3",
       description: "a great place to be",
-      price: 200
+      price: 450.00
     },
    ])
   },

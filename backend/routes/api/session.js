@@ -1,8 +1,8 @@
 const express = require('express');
-const { setTokenCookie, restoreUser } = require('../../utils/auth');
+const { setTokenCookie, restoreUser } = require('../../utils/auth.js');
 const { User } = require('../../db/models');
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors } = require('../../utils/validation.js');
 
 const router = express.Router();
 
@@ -32,10 +32,15 @@ router.post(
       err.errors = ['The provided credentials were invalid.'];
       return next(err);
     }
-    await setTokenCookie(res, user);
+    const tc = await setTokenCookie(res, user);
 
     return res.json({
-      user
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      username: user.username,
+      token: tc
     });
   }
 );
@@ -51,7 +56,11 @@ router.get('/', restoreUser, (req, res) => {
       const { user } = req;
       if (user) {
         return res.json({
-          user: user.toSafeObject()
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username,
         });
       } else return res.json({});
     });

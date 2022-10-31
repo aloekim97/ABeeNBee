@@ -18,20 +18,8 @@ const validatingReview = [
     handleValidationErrors
 ]
 
-// const maxSize = async(req, res, next) => {
-//     const {reviewId} = req.params;
 
-//     const count = await ReviewImage.count({
-//         where: {reviewId}
-//     })
-//     if(count >= 10) {
-//         const err = new Error(`Maximum number of images for this resource was reached`)
-//         err.status = 403;
-//         return next(err)
-//     }
-// }
-
-//get reviews
+//get reviews //THISE ONE
 router.get('/current', requireAuth, async(req, res, next) => {
     const {user} = req;
 
@@ -44,7 +32,7 @@ router.get('/current', requireAuth, async(req, res, next) => {
             },
             {
                 model: Spot,
-                attributes: ['id', 'ownerId', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', 'previewImage']
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
             },
             {
                 model: ReviewImage,
@@ -52,6 +40,22 @@ router.get('/current', requireAuth, async(req, res, next) => {
             }
         ]
     })
+    for(let i = 0; i < review.length; i++) {
+        review[i] = review[i].toJSON();
+
+        const pImg = await SpotImage.findOne({
+            where: {
+                spotId: review[i].Spot.id, 
+                preview: true
+            }
+        })
+        if(pImg) {
+            review[i].Spot.previewImage = pImg.url
+        } else {
+            review[i].Spot.previewImage = null
+        }
+    }
+    return res.json({Reviews: review})
 
 })
 
@@ -62,10 +66,10 @@ router.post('/:reviewId/images', requireAuth, async(req, res, next) => {
     const {user} = req;
 
     const review = await Review.findByPk(reviewId)
-    userId = parseInt(user.id)
-    revUserId = parseInt(review.userId)
+    //userId = parseInt(user.id)
+    //revUserId = parseInt(review.userId)
 
-    if(review && revUserId !== userId) {
+    if(review && parseInt(review.userId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
         return next(err);
@@ -78,11 +82,17 @@ router.post('/:reviewId/images', requireAuth, async(req, res, next) => {
         err.status = 403;
         return next(err)
     }
-    const newImg = await ReviewImage.create({
-        reviewId,
-        url
-    })
+    if(review) {
+        const newImg = await ReviewImage.create({
+            reviewId,
+            url
+        })
     return res.json({id: newImg.id, url: newImg.url})
+    } else {
+        const err = new Error(`Review couldn't be found`);
+        err.status = 404;
+        return next(err);
+    }
 })
 
 //edit a review
@@ -92,10 +102,10 @@ router.put('/:reviewId', requireAuth, async(req, res, next) => {
     const {review, stars} = req.body;
 
     const currRev = await Review.findByPk(reviewId);
-    userId = parseInt(user.id)
-    currRevId = parseInt(currRev.userId)
+    //userId = parseInt(user.id)
+    //currRevId = parseInt(currRev.userId)
     
-    if(currRev && currRevId !== userId) {
+    if(currRev && parseInt(currRev.userId) !== parseInt(user.id)) {
         const err = new Error('Forbidden');
         err.status = 403;
         return next(err);
@@ -119,10 +129,10 @@ router.delete('/:reviewId', requireAuth, async(req, res, next) => {
     const {reviewId} = req.params;
 
     const review = await Review.findByPk(reviewId)
-    userId = parseInt(user.id)
-    revUserId = parseInt(review.userId)
+    // userId = parseInt(user.id)
+    // revUserId = parseInt(review.userId)
 
-    if(review && revUserId !== userId) {
+    if(review && parseInt(review.userId) !== parseInt(user.id)) {
         const err = new Error(`Forbidden`)
         err.status = 403
         return next(err)
@@ -133,7 +143,7 @@ router.delete('/:reviewId', requireAuth, async(req, res, next) => {
         return next(err);
     } else {
         await review.destroy();
-        return res.json({"message": "Successfully deleted", "statusCode": 200})
+        return res.json({message: "Successfully deleted", statusCode: 200})
     }
 })
 

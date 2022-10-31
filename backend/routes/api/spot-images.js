@@ -1,4 +1,4 @@
-const express = requre('express')
+const express = require('express')
 
 const {check} = require('express-validator')
 const {handleValidationErrors} = require('../../utils/validation.js');
@@ -11,23 +11,24 @@ router.delete('/:imageId', requireAuth, async(req, res, next) => {
     const {imageId} = req.params
     const {user} = req
 
-    const img = await ReviewImage.findByPk(imageId)
+    const img = await SpotImage.findByPk(imageId, {
+        include: [
+            {model: Spot, attributes: ['ownerId']}
+        ]
+    })
     userId = parseInt(user.id)
-    reviewImageId = parseInt(img.Review.userId)
+    spotOwnerId = parseInt(img.Spot.spotOwnerId)
 
-    if(img && reviewImageId !== userId) {
+    if(img && spotOwnerId !== userId) {
         const err = new Error(`Forbidden`)
         err.status = 403
         return next(err)
     }
     if(img) {
         await img.destroy();
-        return res.json({
-            message: "Successfully deleted",
-            statusCode: 200
-          })
+        return res.json({message: "Successfully deleted", statusCode: 200})
     } else {
-        const err = new Error(`Review Image couldn't be found`)
+        const err = new Error(`Spot Image couldn't be found`)
         err.status = 404
         return next(err)
     }
@@ -35,4 +36,4 @@ router.delete('/:imageId', requireAuth, async(req, res, next) => {
 
 
 
-module.exports = router;
+module.exports = router

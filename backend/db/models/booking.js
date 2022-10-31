@@ -19,27 +19,18 @@ module.exports = (sequelize, DataTypes) => {
     spotId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'CASCADE'
     },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      onDelete: 'CASCADE'
     },
     startDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: new Date()
+      type: DataTypes.DATEONLY,
+      allowNull: false
     },
     endDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: new Date(),
-      validate: {
-        timeTravel() {
-          if(this.startDate >= this.endDate) throw new Error('Cannot go back in time')
-        }
-      }
+      type: DataTypes.DATEONLY,
+      allowNull: false
     }
   }, {
     sequelize,

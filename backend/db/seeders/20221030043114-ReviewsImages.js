@@ -15,15 +15,15 @@ module.exports = {
      await queryInterface.bulkInsert("ReviewImages", [
       {
         reviewId: 1,
-        url: "1"
+        url: "img url"
       },
       {
         reviewId: 2,
-        url: "2"
+        url: "img url"
       },
       {
         reviewId: 3,
-        url: "3"
+        url: "img url"
       }
      ])
   },

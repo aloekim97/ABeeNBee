@@ -2,8 +2,8 @@ const router = require('express').Router();
 const sessionRouter = require('./session.js');
 const usersRouter = require('./user.js');
 const spotsRouter = require('./spots.js');
-const reviewsRouter = require('./reviews.js')
-const bookingsRouter = require('./bookings.js')
+const reviewsRouter = require('./reviews.js');
+const bookingsRouter = require('./bookings.js');
 const spotImagesRouter = require('./spot-images.js');
 const reviewImagesRouter = require('./review-images.js');
 
@@ -15,7 +15,7 @@ router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/spots', spotsRouter);
 router.use('/reviews', reviewsRouter);
-router.use('/bookings', bookingsRouter)
+router.use('/bookings', bookingsRouter);
 router.use('/spot-images', spotImagesRouter);
 router.use('/review-images', reviewImagesRouter);
 

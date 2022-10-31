@@ -1,10 +1,9 @@
-const express = require('express')
+const express = require('express');
 
 const {check} = require('express-validator')
 const {handleValidationErrors } = require('../../utils/validation.js');
 const {requireAuth, restoreUser} = require('../../utils/auth.js');
 const {User, Spot, SpotImage, Review, ReviewImage, Booking, Sequelize} = require("../../db/models");
-
 const router = express.Router();
 
 //get all current user's bookings
@@ -16,11 +15,26 @@ router.get('/current', requireAuth, async(req, res, next) => {
         include:[
             {
                 model: Spot,
-                attributes: ['id', 'ownerId', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price', 'previewImage']
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
             }
         ]
     })
+    for(let i = 0; i < book.length; i++) {
+        book[i] = book[i].toJSON();
 
+        let pImg = await SpotImage.findOne({
+            where: {
+                spotId: book[i].Spot.id,
+                preview: true
+            }
+        })
+        if(pImg) {
+            book[i].Spot.previewImage = pImg.url;
+        } else {
+            book[i].Spot.previewImage = null
+        }
+    }
+    return res.json({Bookings: book})
 })
 
 
@@ -31,10 +45,15 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
     const {startDate, endDate} = req.body
 
     const booking = Booking.findByPk(bookingId)
-    userId = parseInt(user.id)
-    currBookId = parseInt(booking.userId)
+    // userId = parseInt(user.id)
+    // currBookId = parseInt(booking.userId)
+    if(!booking) {
+        const err = new Error(`Booking couldn't be found`)
+        err.status = 404;
+        return next(err)
+    }
 
-    if(booking && currBookId === userId) {
+    if(booking && parseInt(booking.userId) === parseInt(user.id)) {
         const startDay = new Date(startDate)
         const endDay = new Date(endDate)
     
@@ -44,11 +63,6 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
             err.errors = {endDate: "endDate cannot be on or before startDate"};
             return next(err)
         }
-        if(!booking) {
-            const err = new Error(`Booking couldn't be found`)
-            err.status = 404;
-            return next(err)
-        }
         if(new Date() > endDay) {
             const err = new Error(`Past bookings can't be modified`)
             err.status = 403;
@@ -56,7 +70,7 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
         }
         const alrBooked = await Booking.findOne({
             where : {
-                [Op.between]: {startDay, endDay}
+                [Op.or]: {startDay, endDay}
             }
         })
         if(alrBooked) {
@@ -68,13 +82,16 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
             }
             return next(err)
         }
-    }
-
-    const newBook = await booking.update({
-            startDate,
-            endDate
+        const newBook = await booking.update({
+                startDate,
+                endDate
         })
         return res.json(newBook)
+    } else {
+        const err = Error(`Forbidden: You can't book your own spot.`);
+        err.status = 403
+        return next(err);
+    }
 })
 
 router.delete('/:bookingId', requireAuth, async(req, res, next) => {
@@ -82,12 +99,12 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
     const {user} = req;
 
     const booking = await Booking.findByPk(bookingId)
-    userId = parseInt(user.id)
-    bookingUserId = parseInt(booking.userId)
+    // userId = parseInt(user.id)
+    // bookingUserId = parseInt(booking.userId)
 
-    if(booking && bookingUserId === userId) {
+    if(booking && parseInt(booking.userId) ===parseInt(user.id)) {
         await booking.delete();
-        res.json({"message": "Successfully deleted", "statusCode": 200})
+        res.json({message: "Successfully deleted", statusCode: 200})
     } 
     if(!booking) {
         const err = new Error(`Booking couldn't be found`)
@@ -100,5 +117,4 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
         return next(error)
     }
 })
-
-module.exports = router
+module.exports = router;
