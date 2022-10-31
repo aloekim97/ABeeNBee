@@ -405,7 +405,7 @@ router.get('/:spotId/bookings', requireAuth, async(req, res, next) => {
             include: [{model: User, attributes: ['id', 'firstName', 'lastName']}]
         })
         return res.json({Booking: book})
-    } else if (spot && parseInt(spot.ownerId) !== parseInt(user.id)) {
+    } else {
         const book = await Booking.findAll({
             where: {spotId},
             attributes: ['spotId', 'startDate', 'endDate']
@@ -449,7 +449,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res, next) => {
                 ]
             }
         })
-        if(booked) {
+        if(!booked) {
             const newBook = await Booking.create({
                 spotId,
                 userId: user.id,
