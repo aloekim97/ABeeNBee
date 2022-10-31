@@ -44,7 +44,7 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
     const {user} = req;
     const {startDate, endDate} = req.body
 
-    const booking = Booking.findByPk(bookingId)
+    const booking = await Booking.findByPk(bookingId)
     // userId = parseInt(user.id)
     // currBookId = parseInt(booking.userId)
     if(!booking) {
