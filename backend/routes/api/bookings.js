@@ -68,12 +68,12 @@ router.put('/:bookingId', requireAuth, async(req, res, next) => {
             err.status = 403;
             return next(err)
         }
-        const alrBooked = await Booking.findOne({
+        const booked = await Booking.findOne({
             where : {
                 [Op.or]: {startDay, endDay}
             }
         })
-        if(alrBooked) {
+        if(booked) {
             const err = new Error(`Sorry, this spot is already booked for the specified dates`)
             err.status = 403;
             err.errors = {
