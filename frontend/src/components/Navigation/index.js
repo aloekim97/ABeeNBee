@@ -6,7 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import { Modal } from '../../context/Modal';
-import SignupFormPage from '../SignupFormPage1/SignupForm';
+import SignupFormPage from '../SignupFormPage/SignupForm';
 import LoginForm from '../LoginFormModal/LoginForm';
 
 function Navigation({ isLoaded }){
