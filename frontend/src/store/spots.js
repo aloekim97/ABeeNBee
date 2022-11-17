@@ -5,6 +5,7 @@ const GET_DETAIL = 'spots/GET_DETAIL';
 const CREATE_SPOT = 'spots/CREATE_SPOT';
 const EDIT_SPOT = 'spots/EDIT_SPOT'
 
+//actions
 const getSpots = (payload) => {
     return {
         type: GET_SPOTS,
@@ -33,6 +34,7 @@ const editSpot = (payload) => {
     }
 }
 
+//hunky thunk
 export const spotsThunk = () => async (dispatch) => {
     const res = await fetch(`/api/spots`, {
         method: "GET"
@@ -90,5 +92,32 @@ export const editThunk = (spot) => async (dispatch) => {
         return data
     } else {
         throw res
+    }
+}
+
+//normailze
+const normailzeData = (data) => {
+    const obj = {};
+    obj.forEach(place => obj[place.id] = place)
+    return obj
+}
+
+//reducer
+export default function spotsReducer(state = {}, action) {
+    let newState = {...state}
+    switch (action.type) {
+        case GET_SPOTS:
+            const allSpots = normailzeData(action.payload.Spots);
+            newState["Spots"] = allSpots;
+            return newState
+        case GET_DETAIL:
+            newState["SpotDetails"] = action.payload
+            return newState
+        case CREATE_SPOT:
+            newState["NewSpot"] = action.payload;
+            return newState
+        case EDIT_SPOT:
+        default:
+            return state;
     }
 }

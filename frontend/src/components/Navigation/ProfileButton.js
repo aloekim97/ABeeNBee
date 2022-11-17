@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import {AutoLogin} from './GuestLogin'
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -44,10 +45,19 @@ function ProfileButton({ user }) {
         </ul>) :
         (<ul className="profile-dropdown">
           <li>
-          <button>Log In</button>
+          <button onClick={() => {
+            setLogin(true)
+            setShowModal(true)
+          }}>Log In</button>
           </li>
           <li>
-            <button>Sign Up</button>
+            <button onClick={() => {
+            setLogin(false)
+            setShowModal(true)
+            }}>Sign Up</button>
+          </li>
+          <li>
+            <AutoLogin />
           </li>
         </ul>)
       )}
