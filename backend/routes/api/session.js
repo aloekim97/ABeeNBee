@@ -34,14 +34,14 @@ router.post(
     }
     const tc = await setTokenCookie(res, user);
 
-    return res.json({
+    return res.json({ user: {
       id: user.id,
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       username: user.username,
       token: tc
-    });
+  }});
   }
 );
 
@@ -55,13 +55,13 @@ router.delete('/', (_req, res) => {
 router.get('/', restoreUser, (req, res) => {
       const { user } = req;
       if (user) {
-        return res.json({
+        return res.json({ user: {
           id: user.id,
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
           username: user.username,
-        });
+        }});
       } else return res.json({});
     });
   

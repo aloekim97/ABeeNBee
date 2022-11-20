@@ -1,0 +1,44 @@
+.ihatethisbutton{
+    height: 42px;
+    width: 72px;
+    border-radius: 21px;
+
+}
+
+.menu {
+    position: relative;
+}
+
+.dropdown{
+    position: absolute;
+    right: 0px;
+    background-color: white;
+}
+
+.profile-dropdown{
+    border: solid whitesmoke;
+    width: 210px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.username{
+    text-decoration: none;
+}
+
+.email{
+    text-decoration: none;
+    color: black;
+}
+
+.create-spot-link{
+    text-decoration: none;
+}
+
+.logout{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}

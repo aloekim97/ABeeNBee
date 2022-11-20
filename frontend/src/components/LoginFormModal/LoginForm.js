@@ -1,9 +1,9 @@
-// frontend/src/components/LoginFormModal/LoginForm.js
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+//import './LoginForm.css';
 
-function LoginForm({setShowModal}) {
+function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ function LoginForm({setShowModal}) {
       }
     );
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
       <ul>

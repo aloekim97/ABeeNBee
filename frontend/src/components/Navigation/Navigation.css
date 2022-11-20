@@ -1,0 +1,13 @@
+.logo{
+    color: pink;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.the-bar{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding-left: 9%;
+    padding-right: 9%;
+}

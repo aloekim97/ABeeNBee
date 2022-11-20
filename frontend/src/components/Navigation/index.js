@@ -1,48 +1,56 @@
-// frontend/src/components/Navigation/index.js
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 // import LoginFormModal from '../LoginFormModal';
-import './Navigation.css';
-import { Modal } from '../../context/Modal';
-import SignupFormPage from '../SignupFormPage/SignupForm';
+// import SignupFormModal from '../SignupFormModal';
+// One modal for login and signup.
 import LoginForm from '../LoginFormModal/LoginForm';
-// import SignupFormModal from '../SignupFormPage/index';
+import SignupForm from '../SignupFormPage/SignupForm';
+import { Modal } from '../../context/Modal';
+import './Navigation.css';
 
 function Navigation({ isLoaded }){
-  const sessionUser = useSelector(state => state.session.user);
-  const [showModal, setShowModal] = useState(false)
-  const [login, setLogin] = useState(true)
+    const sessionUser = useSelector(state => state.session.user);
+    const [showModal, setShowModal] = useState(false)
+    const [login, setLogin] = useState(true)
 
-  // let sessionLinks;
-  // if (sessionUser) {
-  //   sessionLinks = (
-  //     <ProfileButton className="profileButton" user={sessionUser} />
-  //   );
-  // } else {
-  //   sessionLinks = (
-  //     <>
-  //       <LoginFormModal />
-  //       <SignupFormModal />
-  //     </>
-  //   );
-  // }
+    // let sessionLinks;
+    // if (sessionUser) {
+    //     sessionLinks = (
+    //     <ProfileButton user={sessionUser} />
+    //     );
+    // } else {
+    //     sessionLinks = (
+    //         <>
+    //         <LoginFormModal />
+    //         <SignupFormModal />
+    //         </>
+    //     );
+    // }
 
-  return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && <ProfileButton user={sessionUser} setLogin={setLogin} setShowModal={setShowModal} />}
-      </li>
-      {showModal && <Modal onClose={() => setShowModal=(false)}>
-        {login ? <LoginForm setShowModal={setShowModal} /> : <SignupFormPage setShowModal={setShowModal} />}
-      </Modal>}
-    </ul>
-  );
+    return (
+        <div>
+            <div className='the-bar'>
+                <NavLink exact to="/" className="logo">AIRBNB</NavLink>
+                {isLoaded && (
+                    <ProfileButton
+                        user={sessionUser}
+                        setLogin={setLogin}
+                        setShowModal={setShowModal}
+                        />
+                )}
+            </div>
+            {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+                {login ? <LoginForm setShowModal={setShowModal}/> : <SignupForm setShowModal={setShowModal}/>}
+            </Modal>
+            )}
+        </div>
+    );
 }
 
 export default Navigation;
-
 
 

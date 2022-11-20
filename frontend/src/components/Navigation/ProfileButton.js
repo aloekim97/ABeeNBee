@@ -1,8 +1,9 @@
-// frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { NavLink } from 'react-router-dom';
 import {AutoLogin} from './GuestLogin'
+import './ProfileButton.css';
 
 function ProfileButton({ user, setLogin, setShowModal }) {
   const dispatch = useDispatch();
@@ -32,35 +33,49 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div className="menu">
+      <button onClick={openMenu} className="ihatethisbutton">
+        <i className="fa-regular fa-circle-user"></i>
       </button>
+      <div className="dropdown" >
       {showMenu && ( user ?
-      (<ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>) :
-        (<ul className="profile-dropdown">
-          <li>
-          <button onClick={() => {
-            setLogin(true)
-            setShowModal(true)
-          }}>Log In</button>
-          </li>
-          <li>
+        (<div className="profile-dropdown">
+          <div className="username">{user.username}</div>
+          <div className="email">{user.email}</div>
+          <div>
+            <NavLink className='create-spot-link' to={'/spots/create'}>
+              I wish I had owned a home
+            </NavLink>
+          </div>
+          {/* <li>
+            <NavLink className='user-spots' to={'/spots/current'}>
+              my spots
+            </NavLink>
+          </li> */}
+          <div>
+            <button onClick={logout} className='logout'>Log Out</button>
+          </div>
+        </div>) :
+        (<div className="profile-dropdown">
+          <div>
             <button onClick={() => {
-            setLogin(false)
-            setShowModal(true)
+              setLogin(true)
+              setShowModal(true)
+            }}>Log In</button>
+          </div>
+          <div>
+            <button onClick={() => {
+              setLogin(false)
+              setShowModal(true)
             }}>Sign Up</button>
-          </li>
-          <li>
+          </div>
+          <div>
             <AutoLogin />
-          </li>
-        </ul>)
+          </div>
+        </div>)
       )}
+      </div>
+      </div>
     </>
   );
 }

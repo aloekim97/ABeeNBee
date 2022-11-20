@@ -60,14 +60,14 @@ const validateSignup = [
       const user = await User.signup({ email, username, password, firstName, lastName });
       const tc = await setTokenCookie(res, user);
   
-      return res.json({
+      return res.json({ user: {
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
         username: user.username,
-        token: tc
-      });
+        //token: tc
+      }});
     }
   );
 
