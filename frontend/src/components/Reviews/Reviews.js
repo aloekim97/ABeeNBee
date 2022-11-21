@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux'
 import { delRevThunk } from '../../store/reviews';
 import { detailThunk } from '../../store/spots';
-
+import './NewReview.css'
 
 
 export default function SpotRevs({review, spot}) {
