@@ -20,3 +20,15 @@
 .location{
     text-decoration: none;
 }
+
+.edit-button{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.delete-button{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}

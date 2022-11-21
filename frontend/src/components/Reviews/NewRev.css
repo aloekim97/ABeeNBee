@@ -4,3 +4,9 @@
     align-items: center;
     
 }
+
+.submit{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}

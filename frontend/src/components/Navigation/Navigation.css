@@ -2,6 +2,8 @@
     color: pink;
     text-decoration: none;
     font-size: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .the-bar{
@@ -10,4 +12,8 @@
     position: relative;
     padding-left: 9%;
     padding-right: 9%;
+}
+
+.img{
+    width:10%;
 }

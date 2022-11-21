@@ -33,7 +33,9 @@ function Navigation({ isLoaded }){
     return (
         <div>
             <div className='the-bar'>
-                <NavLink exact to="/" className="logo">AIRBNB</NavLink>
+                <NavLink exact to="/" className="logo">
+                    <img className='img' src={require('../../images/favicon.jpeg')}></img>
+                    ABeeNBee</NavLink>
                 {isLoaded && (
                     <ProfileButton
                         user={sessionUser}
