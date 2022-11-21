@@ -7,6 +7,7 @@ const EDIT_SPOT = 'spots/EDIT_SPOT'
 const DELETE_SPOT = 'spots/DELETE_SPOT'
 const GET_USER_SPOT = 'spots/GET_USER_SPOT'
 
+
 //actions
 const getSpots = (payload) => {
     return {
@@ -50,6 +51,7 @@ const userSpot = (payload) => {
     }
 }
 
+
 //hunky thunk
 export const allSpotsThunk = () => async (dispatch) => {
     const res = await fetch(`/api/spots`, {
@@ -79,35 +81,33 @@ export const detailThunk = (spotId) => async (dispatch) => {
     }
 }
 
-export const createThunk = (spot, preview) => async (dispatch) => {
-    const res = await fetch(`/api/spots`, {
-        method: "POST",
-        headers: {"Contenet-Type": "application/json"},
-        body: JSON.stringify(spot)
-    })
+export const createThunk = (info) => async (dispatch) => {
+    const { url } = info
+    const res = await csrfFetch('/api/spots', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(info)
+    });
+    if (res.ok) {
+        const spot = await res.json();
+        const resp = await csrfFetch(`/api/spots/${spot.id}/images`, {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url, preview: true })
 
-    if(res.ok) {
-        const data = await res.json()
-        dispatch(createSpot(data))
-        const img = await csrfFetch(`/api/spots/${data.id}/images`, {
-            method: "POST",
-            body: JSON.stringify(preview),
-          });
-          if (img.ok) {
-            return data
-          } else {
-            throw img;
-          }
-    } else {
-        throw res
+        })
+
+        if (resp.ok) {
+            const image = await resp.json()
+            spot.SpotImages = [image]
+            dispatch(createSpot(spot));
+            return spot
+        }
+
     }
 }
 
-export const editThunk = (spot) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+export const editThunk = (edits, spotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: "PUT",
         headers: {"Contenet-Type": "application/json"},
-        body: JSON.stringify(spot)
+        body: JSON.stringify(edits)
     })
 
     if (res.ok) {

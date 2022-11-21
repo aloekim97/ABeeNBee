@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-//import './LoginForm.css';
+import './LoginForm.css';
 
 function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function LoginForm({ setShowModal }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='loginform' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -38,7 +38,7 @@ function LoginForm({ setShowModal }) {
           required
         />
       </label>
-      <label>
+      <label className>
         Password
         <input
           type="password"

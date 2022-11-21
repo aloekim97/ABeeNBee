@@ -55,6 +55,7 @@
 
 .spot-info{
     display: flex;
+    border-bottom: solid lightgray;
 }
 
 .ratings{
@@ -67,4 +68,39 @@
 
 .review-count{
     padding-right: 3px;
+}
+
+.link-to-create{
+    text-decoration: none;
+    padding: 10px;
+}
+
+.spotrevs{
+    padding: 10px;
+
+}
+
+.super{
+    padding-top: 10px;
+}
+
+.super-detail{
+    color: lightgray;
+}
+
+.check{
+    padding-top: 10px;
+}
+
+.check-in{
+    color: lightgray;
+}
+
+.cancel{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.hype{
+    border-bottom: solid lightgray;
 }

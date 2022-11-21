@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import './CreateSpot.css'
 
 
 export default function CreateSpot() {
@@ -19,6 +20,7 @@ export default function CreateSpot() {
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [url, setUrl] = useState('')
+    const [previewImage, setPreviewImage] = useState('')
     const [errors, setErrors] = useState([])
     
 
@@ -28,23 +30,26 @@ export default function CreateSpot() {
 
     const onSub = (e) => {
         e.preventDefault();
-        const newInfo = {
-            address,
-            city,
-            state,
-            country,
-            lat,
-            lng,
-            name,
-            description,
-            price,
-            url,
-        } 
-        return dispatch(createThunk(newInfo))
-            .then((spot) => {
-                history.push(`/spot/${spot.id}`)
-            })
+        
+        const info = {
+                    address,
+                    city,
+                    state,
+                    country,
+                    lat,
+                    lng,
+                    name,
+                    description,
+                    price,
+                    url
+                }
+        const newInfo = dispatch(createThunk(info))
+        newInfo.SpotImages = [{url: url}]
+        if(newInfo) {
+            history.push('/')
         }
+    }
+
 
     return (
         <div className='entire-create-page'>
@@ -112,13 +117,13 @@ export default function CreateSpot() {
                 <div>
                     <input placeholder="Url"
                         type='text'
-                        value={url}
-                        onChange={e => setUrl(e.target.value)}
+                        value={previewImage}
+                        onChange={e => setPreviewImage(e.target.value)}
                         required
                     />
                 </div>
                 <div>
-                    <div id="price/night">&nbsp;Price/night</div>
+                    <div id="price/night"></div>
                     <input placeholder="Price/night"
                         id="price"
                         type='number'

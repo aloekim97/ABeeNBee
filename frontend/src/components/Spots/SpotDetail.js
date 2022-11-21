@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import * as spotsActions from "../../store/spots";
 import * as reviewsActions from '../../store/reviews';
 import SpotRevs from '../Reviews/Reviews'
-import {NavLink} from 'react-router-dom'
+
 
 import './SpotDetail.css'
 
@@ -36,7 +36,7 @@ export default function SpotDetail() {
                 </div>
                 <div className="split">·</div>
                 <div className="review-count">
-                    {(spot.numReviews)}
+                    {(spot.numReviews)} reviews
                 </div>
                 <div className="split">·</div>
                 <div className="area">
@@ -72,12 +72,15 @@ export default function SpotDetail() {
             </div>
             <div className="hype">
                 <div className="super">{spot.Owner.firstName} is a Superhost</div>
-                <p className="super-detail">Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
+                <div className="super-detail">Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</div>
+                <div className="check">
+                Great check-in experience
+                </div>
                 <div className="check-in">100% of recent guests gave the check-in process a 5-star rating.</div>
                 <div className="cancel">Free cancelation for 48 hours</div>
             </div>
             <div className="stars">
-                <i class="fa fa-star"></i>{spot.numReviews}
+                <i class="fa fa-star"></i>{spot.numReviews} reviews
             </div>
             <div className='spotrevs'>
                 {reviews && Object.values(reviews).length > 0 ? Object.values(reviews).map((review) => (

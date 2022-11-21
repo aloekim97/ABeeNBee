@@ -67,7 +67,7 @@ export default function reviewReducer(state = {}, action) {
     let newState = {...state}
     switch (action.type) {
         case GET_SPOT_REVIEWS:
-            const spotReviews = normalizeData(action.spotRevs.Reviews)
+            const spotReviews = normalizeData(action.Revs.Reviews)
             newState["Reviews"] = spotReviews
             return newState
         case DELETE_REV:

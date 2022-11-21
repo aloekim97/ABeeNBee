@@ -1,0 +1,22 @@
+.your-spots-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.one-spot{
+    width: 35%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.name{
+    text-decoration: none;
+}
+
+.price{
+    text-decoration: none;
+}
+
+.location{
+    text-decoration: none;
+}

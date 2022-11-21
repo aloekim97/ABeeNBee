@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { createRevthunk } from "../../store/reviews";
 import { detailThunk } from "../../store/spots";
+import './NewRev.css'
 
 
 export default function NewReview() {
@@ -68,7 +69,7 @@ export default function NewReview() {
                     required
                     />
                 </label>
-                <label>
+                <label>Stars:
                     <input className="star-input"
                     type='number'
                     value={stars}

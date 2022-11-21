@@ -18,7 +18,6 @@ export default function EditSpot() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
-    const [url, setUrl] = useState('');
     const [errors, setErrors] = useState([]);
 
     const spot = useSelector(state => state.spots.SpotDetails);
@@ -34,7 +33,6 @@ export default function EditSpot() {
             setName(spot.name);
             setDescription(spot.description);
             setPrice(spot.price);
-            setUrl('');
             setErrors([]);
         }
     }, [spot])
@@ -65,7 +63,6 @@ export default function EditSpot() {
             name,
             description,
             price,
-            url,
         }
 
         return dispatch(editThunk(edits, spotId))
@@ -79,8 +76,8 @@ export default function EditSpot() {
             setName('')
             setDescription('')
             setPrice('')
-            setUrl('')
-            history.push(`/spots/current`);
+            setErrors([])
+            history.push('/');
         })
     };
     
@@ -148,15 +145,7 @@ export default function EditSpot() {
                     />
                 </div>
                 <div>
-                    <input placeholder="Url"
-                        type='text'
-                        value={url}
-                        onChange={e => setUrl(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <div id="price/night">&nbsp;Price/night</div>
+                    <div id="price/night"></div>
                     <input placeholder="Price/night"
                         id="price"
                         type='number'

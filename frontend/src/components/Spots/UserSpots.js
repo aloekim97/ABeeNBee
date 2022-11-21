@@ -2,31 +2,24 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { deleteThunk, userSpotThunk } from "../../store/spots";
-import { useHistory } from "react-router-dom";
+import './UserSpots.css'
+
 
 export default function UserSpots({spot}) {
     
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spots.UserSpots)
     const user = useSelector(state => state.session.user)
-    const history = useHistory()
+  
+
 
     useEffect(() => {
         dispatch(userSpotThunk())
     }, [dispatch])
 
-    const delButt = (e) => {
-        e.preventDefault()
-        dispatch(deleteThunk(spot.id))
-    }
-    const editButt = (e) => {
-        e.preventDefault()
-        history.push(`/spots/${spot.id}/edit`)
-    }
-    
-    console.log()
     if(!user) return <Redirect to='/' />
     if(!spots) return <h1>No spots</h1>
+    
     return(
         <div className="your-spot-container">
         <div className="your spots">
@@ -46,8 +39,13 @@ export default function UserSpots({spot}) {
                             </div>
                         </NavLink>
                         <div className="buttons">
-                            <button onClick={delButt} className='delete-button'>Delete</button>
-                            <button onClick={editButt} className='edit-button'>Edit</button>
+                            <NavLink to={`/spots/${spot.id}/edit`}>
+                                <button className='edit-button'>Edit</button>
+                            </NavLink>
+                            <button onClick={(e) => {
+                                e.preventDefault();
+                                dispatch(deleteThunk(spot.id))
+                            }} className='delete-button'>Delete</button>
                         </div>
                     </div>
                 )
