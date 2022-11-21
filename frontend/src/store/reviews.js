@@ -1,53 +1,47 @@
 import {csrfFetch} from './csrf'
 import {normalizeData} from './spots'
 
-const GET_USER_REVIEWS = '/reviews/GET_USER_REVIEWS'
 const GET_SPOT_REVIEWS = '/reviews/GET_SPOT_REVIEWS'
 const CREATE_REV = '/reviews/CREATE_REV'
 const DELETE_REV = '/reviews/DELETE_REV'
 
-const getUserRev = (userRevs) => ({
-    type: GET_USER_REVIEWS,
-    userRevs
-})
-
-const getSpotRev = (spotRevs) => ({
+const getSpotRev = (Revs) => {
+    return {
     type: GET_SPOT_REVIEWS,
-    spotRevs
-})
-
-const createRev = (newRev) => ({
-    type: CREATE_REV,
-    newRev
-})
-
-const deleteRev = (reviewId) => ({
-    type:DELETE_REV,
-    reviewId
-})
-
-//thunkies
-export const userRevThunk = () => async (dispatch) => {
-    const res = await csrfFetch('/api/reviews/current')
-    if(res.ok) {
-        const data = await res.json()
-        dispatch(getUserRev(data))
+    Revs
     }
 }
+
+const createRev = (Rev) => {
+    return {
+    type: CREATE_REV,
+    Rev
+    }
+}
+
+const deleteRev = (reviewId) => {
+    return {
+    type: DELETE_REV,
+    reviewId
+    }
+}
+
+//thunkies
 
 export const spotRevThunk = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
     if(res.ok) {
         const data = await res.json()
         dispatch(getSpotRev(data))
+        return res
     }
 } 
 
-export const createRevthunk = (newRev, spotId) => async (dispatch) => {
+export const createRevthunk = (Rev, spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newRev)
+        body: JSON.stringify(Rev)
     })
     if(res.ok) {
         const data = await res.json()

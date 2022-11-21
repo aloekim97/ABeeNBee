@@ -44,27 +44,27 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           <div className="email">{user.email}</div>
           <div>
             <NavLink className='create-spot-link' to={'/spots/create'}>
-              I wish I had owned a home
+              List Your House 
             </NavLink>
           </div>
-          {/* <li>
-            <NavLink className='user-spots' to={'/spots/current'}>
-              my spots
-            </NavLink>
-          </li> */}
           <div>
+            <NavLink className='user-spots' to={'/spots/user'}>
+              My Spots
+            </NavLink>
+          </div>
+          <div className>
             <button onClick={logout} className='logout'>Log Out</button>
           </div>
         </div>) :
         (<div className="profile-dropdown">
           <div>
-            <button onClick={() => {
+            <button className="login" onClick={() => {
               setLogin(true)
               setShowModal(true)
             }}>Log In</button>
           </div>
           <div>
-            <button onClick={() => {
+            <button className='signup' onClick={() => {
               setLogin(false)
               setShowModal(true)
             }}>Sign Up</button>

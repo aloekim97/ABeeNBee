@@ -2,10 +2,17 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
-.images{
-    width: 317px;
-    height: 301px;
+.single-spot{
+    width: 25%;
+    height: auto;
+}
+
+img{
+    width: 90%;
+    height: auto;
+    border-radius: 5px;
 }

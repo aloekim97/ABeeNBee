@@ -41,4 +41,36 @@
     outline: none;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.create-spot-link{
+    text-decoration: none;
+    color: black;
+}
+
+.user-spots{
+    text-decoration: none;
+    color: black;
+}
+
+.login{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.signup{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.auto{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }

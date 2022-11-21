@@ -17,6 +17,8 @@ export default function SpotDetail() {
     const user = useSelector(state => state.session.user)
     const reviews = useSelector(state => state.reviews.Reviews)
 
+    console.log(user)
+
     useEffect(() => {
         dispatch(reviewsActions.spotRevThunk(spotId))
         dispatch(spotsActions.detailThunk(spotId))
@@ -83,7 +85,7 @@ export default function SpotDetail() {
                 )): <p>No reviews</p>}
             </div>
             <div className="create-rev">
-                {user && spot.Owner.id !== user.id && <NavLink className='link-to-create' to={`/spots/${spotId}/reviews/new`}>Leave A Review</NavLink>}
+                {user && spot.Owner.id !== user.id && (<NavLink className='link-to-create' to={`/spots/${spotId}/reviews/newreview`}>Leave A Review</NavLink>)}
             </div>
         </div>
     )

@@ -7,6 +7,9 @@ import Navigation from "./components/Navigation";
 import AllSpots from "./components/Spots/Spots";
 import CreateSpot from './components/CreateSpot/CreateSpot'
 import SpotDetail from "./components/Spots/SpotDetail";
+import NewReview from "./components/Reviews/NewReview";
+import UserSpots from "./components/Spots/UserSpots";
+import EditSpot from "./components/Spots/EditSpot";
 
 
 function App() {
@@ -16,7 +19,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  return (
+  return isLoaded && (
     <>
       <Navigation isLoaded={isLoaded} />
         <Switch>
@@ -26,8 +29,17 @@ function App() {
           <Route exact path='/spots/create'>
             <CreateSpot />
           </Route>
+          <Route exact path='/spots/user'>
+            <UserSpots />
+          </Route>
           <Route exact path='/spots/:spotId'>
             <SpotDetail />
+          </Route>
+          <Route exact path='/spots/:spotId/reviews/newreview'>
+            <NewReview />
+          </Route>
+          <Route exact path='/spots/:spotId/edit'>
+            <EditSpot />
           </Route>
         </Switch>
     </>

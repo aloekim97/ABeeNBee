@@ -119,18 +119,20 @@ export const editThunk = (spot) => async (dispatch) => {
     }
 }
 
-export const deleteThunk = (spot) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spot.id}`,
+export const deleteThunk = (spotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}`,
     {method: "DELETE"})
     
     if(res.ok) {
-        dispatch(deleteSpot(spot))
+        dispatch(deleteSpot(spotId))
         return 
     }
 }
 
 export const userSpotThunk = () => async (dispatch) => {
-    const res = await csrfFetch('/api/spots/sessiop')
+    const res = await csrfFetch('/api/spots/current',{
+        method: "GET"
+    })
 
     if(res.ok) {
         const data = await res.json();
@@ -150,6 +152,7 @@ export const normalizeData = (data) => {
 
 //reducer
 export default function spotsReducer(state = {}, action) {
+    console.log("Action is " + action.type)
     let newState = {...state}
     switch (action.type) {
         case GET_SPOTS:

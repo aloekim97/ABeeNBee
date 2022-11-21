@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
+import './ProfileButton.css'
 
 export const AutoLogin = () => {
     const dispatch = useDispatch()
@@ -7,6 +8,6 @@ export const AutoLogin = () => {
         dispatch(login({credential: 'Demo-lition', password: 'password'}))
     }
     return(
-        <button onClick={loginWfaker}>auto log</button>
+        <button className="auto" onClick={loginWfaker}>auto log</button>
     )
 }
