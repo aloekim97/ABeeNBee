@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux'
 import { delRevThunk } from '../../store/reviews';
 import { detailThunk } from '../../store/spots';
-import './NewReview.css'
+import './NewRev.css'
 
 
 export default function SpotRevs({review, spot}) {
@@ -10,9 +10,8 @@ export default function SpotRevs({review, spot}) {
 
     
 
-    const clickDelete = (e) => {
-        e.preventDefault();
-        dispatch(delRevThunk(review.id)).then(() => dispatch(detailThunk(spot.id)))
+    const clickDelete = () => {
+        dispatch(delRevThunk(review.id))
     }
 
     return (

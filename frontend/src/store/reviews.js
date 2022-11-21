@@ -58,7 +58,7 @@ export const delRevThunk = (reviewId) => async (dispatch) => {
         method: 'DELETE'
     })
     if(res.ok) {
-        dispatch(deleteRev(reviewId))
+       dispatch(deleteRev(reviewId))
     }
 }
 
