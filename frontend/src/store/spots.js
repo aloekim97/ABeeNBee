@@ -152,7 +152,6 @@ export const normalizeData = (data) => {
 
 //reducer
 export default function spotsReducer(state = {}, action) {
-    console.log("Action is " + action.type)
     let newState = {...state}
     switch (action.type) {
         case GET_SPOTS:

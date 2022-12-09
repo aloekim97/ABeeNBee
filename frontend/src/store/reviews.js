@@ -6,6 +6,7 @@ const CREATE_REV = '/reviews/CREATE_REV'
 const DELETE_REV = '/reviews/DELETE_REV'
 
 const getSpotRev = (Revs) => {
+    console.log(Revs)
     return {
     type: GET_SPOT_REVIEWS,
     Revs
@@ -13,6 +14,7 @@ const getSpotRev = (Revs) => {
 }
 
 const createRev = (Rev) => {
+    console.log(Rev)
     return {
     type: CREATE_REV,
     Rev
@@ -67,7 +69,7 @@ export default function reviewReducer(state = {}, action) {
     let newState = {...state}
     switch (action.type) {
         case GET_SPOT_REVIEWS:
-            const spotReviews = normalizeData(action.Revs.Reviews)
+            const spotReviews = normalizeData(action.Revs.Revs)
             newState["Reviews"] = spotReviews
             return newState
         case DELETE_REV:

@@ -11,9 +11,9 @@ export default function NewReview() {
     const history = useHistory()
     const {spotId} = useParams()
 
-    useEffect(() => {
-        dispatch(detailThunk(spotId))
-    },[dispatch, spotId])
+    // useEffect(() => {
+    //     dispatch(detailThunk(spotId))
+    // },[spotId])
 
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(1)
@@ -28,13 +28,13 @@ export default function NewReview() {
 
         if(stars < 1 || stars > 5) setErrors('Stars must be between 1 and 5')
 
-        if(errors.legth) return
+        if(errors.length) return
 
         const input = {
             review,
             stars
         }
-
+        console.log(input, spotId)
         return dispatch(createRevthunk(input, spotId))
             .then(() => {
                 setReview('')
