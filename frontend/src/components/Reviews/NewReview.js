@@ -10,48 +10,24 @@ export default function NewReview() {
     const dispatch = useDispatch()
     const history = useHistory()
     const {spotId} = useParams()
-
-    // useEffect(() => {
-    //     dispatch(detailThunk(spotId))
-    // },[spotId])
-
     const [review, setReview] = useState('');
     const [stars, setStars] = useState(1)
     const [errors, setErrors] = useState('')
 
     const user = useSelector(state => state.session.user)
 
-    if(!user) <Redirect to='/' />
-
-    const onSub = (e) => {
+    const onSub = async (e) => {
         e.preventDefault();
 
         if(stars < 1 || stars > 5) setErrors('Stars must be between 1 and 5')
-
-        if(errors.length) return
+        if(errors.length) return 
 
         const input = {
             review,
             stars
         }
-        console.log(input, spotId)
-        return dispatch(createRevthunk(input, spotId))
-            .then(() => {
-                setReview('')
-                setStars(1)
-                history.push(`/spots/${spotId}`)
-            })
-            .catch (
-                async (res) => {
-                const data = await res.json()
-                if (data && data.message) {
-                    setErrors(data.message)
-                }
-                if(data && data.errors) {
-                    setErrors(data.errors)
-                }
-            }
-        )
+        let newRev = await dispatch(createRevthunk(input, spotId))
+        await history.push(`/spots/${spotId}`)
     }
 
     return(

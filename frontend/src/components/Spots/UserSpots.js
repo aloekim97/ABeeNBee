@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { deleteThunk, userSpotThunk } from "../../store/spots";
 import './UserSpots.css'
 
@@ -10,9 +10,13 @@ export default function UserSpots({spot}) {
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spots.UserSpots)
     const user = useSelector(state => state.session.user)
-  
+    const history = useHistory()
 
-
+    const deleteSpot = async (e) => {
+        e.preventDefault();
+        await dispatch(deleteThunk(spots.id))
+        await history.push(`/spots/user`)
+    }
     useEffect(() => {
         dispatch(userSpotThunk())
     }, [dispatch])
@@ -38,15 +42,6 @@ export default function UserSpots({spot}) {
                                 </div>
                             </div>
                         </NavLink>
-                        <div className="buttons">
-                            <NavLink to={`/spots/${spot.id}/edit`}>
-                                <button className='edit-button'>Edit</button>
-                            </NavLink>
-                            <button onClick={(e) => {
-                                e.preventDefault();
-                                dispatch(deleteThunk(spot.id))
-                            }} className='delete-button'>Delete</button>
-                        </div>
                     </div>
                 )
             })}

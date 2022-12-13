@@ -62,8 +62,6 @@ export const allSpotsThunk = () => async (dispatch) => {
         const data = await res.json()
         dispatch(getSpots(data))
         return data
-    } else {
-        throw res
     }
 }
 
@@ -82,25 +80,14 @@ export const detailThunk = (spotId) => async (dispatch) => {
 }
 
 export const createThunk = (info) => async (dispatch) => {
-    const { url } = info
     const res = await csrfFetch('/api/spots', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(info)
-    });
-    if (res.ok) {
-        const spot = await res.json();
-        const resp = await csrfFetch(`/api/spots/${spot.id}/images`, {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ url, preview: true })
-
-        })
-
-        if (resp.ok) {
-            const image = await resp.json()
-            spot.SpotImages = [image]
-            dispatch(createSpot(spot));
-            return spot
-        }
-
-    }
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' }, 
+        body: JSON.stringify(info)
+    })
+    const spot = await res.json()
+    dispatch(createSpot(spot))
+    return spot
 }
 
 export const editThunk = (edits, spotId) => async (dispatch) => {
@@ -111,21 +98,18 @@ export const editThunk = (edits, spotId) => async (dispatch) => {
     })
 
     if (res.ok) {
-        const data = await Response.json()
+        const data = await res.json()
         dispatch(editSpot(data))
         return data
-    } else {
-        throw res
     }
 }
 
 export const deleteThunk = (spotId) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spotId}`,
-    {method: "DELETE"})
-    
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
+        method: "DELETE"
+    })
     if(res.ok) {
         dispatch(deleteSpot(spotId))
-        return 
     }
 }
 
@@ -165,13 +149,10 @@ export default function spotsReducer(state = {}, action) {
             newState["NewSpot"] = action.payload;
             return newState
         case EDIT_SPOT:
-            newState = {...state, userSpots: {...state.userSpots}, allSpots:{...state.allSpots}};
-            newState.userSpot[action.payload.id] = action.payload;
-            newState.allSpots[action.payload.id] = action.payload;
+            newState = {...state, [action.payload.id]: action.spot}
             return newState
         case DELETE_SPOT: 
-            newState = {...state, userSpots: {...state.userSpot}};
-            delete newState.userSpots[action.spotId]
+            delete newState[action.spotId]
             return newState
         case GET_USER_SPOT:
             const userSpot = normalizeData(action.payload.Spots)

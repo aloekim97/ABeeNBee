@@ -1,27 +1,38 @@
+import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { delRevThunk } from '../../store/reviews';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { delRevThunk, spotRevThunk } from '../../store/reviews';
 import { detailThunk } from '../../store/spots';
 import './NewRev.css'
 
 
-export default function SpotRevs({review, spot}) {
+export default function SpotRevs({review}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-
+    const history = useHistory()
+    const {spotId} = useParams()
+    const spot = useSelector(state => state.spots[spotId])
+    const reviews = useSelector(state => state.reviews)
     
 
-    const clickDelete = () => {
+    const clickDelete = (e) => {
+        e.preventDefault()
         dispatch(delRevThunk(review.id))
+        dispatch(spotRevThunk(spotId))
+        history.push(`/spots/${spotId}`)
     }
 
+    useEffect(() => {
+        dispatch(spotRevThunk(spotId))
+    },[dispatch])
+
     return (
-        <div className='review-card'>
-            <div className='reviewer-name'>{review.User.firstName}:</div>
-            <div className='the-rev'>{review.review}</div>
-            {(user && user.id === review.User.id) && (
-            <button className='del-butt' onClick={clickDelete}>Delete</button>
-            )}
-            
+        <div className='review-container'>
+            <div>{review.User.firstName}</div>
+            <div>{review.review}</div>
+            {user && review.User.id === user.id && (
+                    <button className='review-button' onClick={clickDelete}>Delete <i className="fa-solid fa-trash"></i></button>
+                )}
         </div>
     )
 }

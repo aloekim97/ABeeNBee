@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import './CreateSpot.css'
+import { addImg } from "../../store/image";
 
 
 export default function CreateSpot() {
@@ -19,7 +20,7 @@ export default function CreateSpot() {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [url, setUrl] = useState('')
+    const [image, setImage] = useState('')
     const [previewImage, setPreviewImage] = useState('')
     const [errors, setErrors] = useState([])
     
@@ -28,7 +29,7 @@ export default function CreateSpot() {
     if(!user) return <Redirect to='/' />
     if(errors.length) return
 
-    const onSub = (e) => {
+    const onSub = async (e) => {
         e.preventDefault();
         
         const info = {
@@ -36,18 +37,22 @@ export default function CreateSpot() {
                     city,
                     state,
                     country,
-                    lat,
-                    lng,
+                    lat: 1,
+                    lng: 1,
                     name,
                     description,
-                    price,
-                    url
-                }
-        const newInfo = dispatch(createThunk(info))
-        newInfo.SpotImages = [{url: url}]
-        if(newInfo) {
-            history.push('/')
+                    price
         }
+        let newSpot = await dispatch(createThunk(info))
+        const spotId = await newSpot.id
+
+        const imageInfo = {
+            spotId: spotId,
+            url: image,
+            preview: true 
+        }
+        let spotImage = await dispatch(addImg(imageInfo, spotId))
+        await history.push('/')
     }
 
 

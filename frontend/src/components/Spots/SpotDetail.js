@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import * as spotsActions from "../../store/spots";
 import * as reviewsActions from '../../store/reviews';
 import SpotRevs from '../Reviews/Reviews'
@@ -11,13 +11,17 @@ import './SpotDetail.css'
 export default function SpotDetail() {
     const {spotId} = useParams();
     const dispatch = useDispatch()
-  
+    const history = useHistory()
 
     const spot = useSelector(state => state.spots.SpotDetails)
     const user = useSelector(state => state.session.user)
     const reviews = useSelector(state => state.reviews.Reviews)
 
-    console.log(user)
+    const deleteSpot = async (e) => {
+        e.preventDefault();
+        await dispatch(spotsActions.deleteThunk(spotId))
+        await history.push(`/`)
+    }
 
     useEffect(() => {
         dispatch(reviewsActions.spotRevThunk(spotId))
@@ -89,6 +93,14 @@ export default function SpotDetail() {
             </div>
             <div className="create-rev">
                 {user && spot.Owner.id !== user.id && (<NavLink className='link-to-create' to={`/spots/${spotId}/reviews/newreview`}>Leave A Review</NavLink>)}
+            </div>
+            <div className="del-edit">
+                {user && spot.Owner.id === user.id && (
+                    <button onClick={deleteSpot} className="delete">Delete This Spot</button>) }
+                {user && spot.Owner.id === user.id && (
+                    <NavLink to={`/spots/${spot.id}/edit`}>
+                            <button className='edit-button'>Edit This Spot</button>
+                    </NavLink>)}
             </div>
         </div>
     )

@@ -39,8 +39,6 @@ export default function EditSpot() {
 
     const user = useSelector(state => state.session.user)
 
-    if(!user) return <Redirect to='/' />
-
     const onSub = (e) => {
         e.preventDefault();
 
@@ -83,11 +81,11 @@ export default function EditSpot() {
     
     return (
         <div className='entire-create-page'>
-            <h1>Edit Your Spot!</h1>
-            <ul>
-                {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
             <form onSubmit={onSub} className="create">
+                <h1>Edit Your Spot!</h1>
+                <ul>
+                    {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <div>
                     <input placeholder="Name"
                         type={'text'}
@@ -162,7 +160,7 @@ export default function EditSpot() {
                         required
                     />
                 </div>
-                <button className="create-submit-button" type="submit">Make Changes</button>
+                <button className="create-submit-button" type="submit">Update</button>
             </form>
 
         </div>

@@ -14,11 +14,15 @@ function SignupForm({ setShowModal }) {
   const [lastName, setLastName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
+  const error = [];
+  
   if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!email.includes("@")) error.push("Email must be a valid email.")
+    if (password === "") error.push("Password is required")
+    if (username === "") error.push("Username is required.")
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ email, username, password, firstName, lastName }))
