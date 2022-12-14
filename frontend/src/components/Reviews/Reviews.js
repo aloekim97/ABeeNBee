@@ -9,22 +9,14 @@ import './NewRev.css'
 export default function SpotRevs({review}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    const history = useHistory()
     const {spotId} = useParams()
-    const spot = useSelector(state => state.spots[spotId])
-    const reviews = useSelector(state => state.reviews)
     
-
+    
     const clickDelete = (e) => {
         e.preventDefault()
         dispatch(delRevThunk(review.id))
-        dispatch(spotRevThunk(spotId))
-        history.push(`/spots/${spotId}`)
+        .then(() => dispatch(spotRevThunk(spotId)))
     }
-
-    useEffect(() => {
-        dispatch(spotRevThunk(spotId))
-    },[dispatch])
 
     return (
         <div className='review-container'>

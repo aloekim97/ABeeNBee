@@ -1,5 +1,4 @@
 import {csrfFetch} from './csrf'
-import {normalizeData} from './spots'
 
 const GET_SPOT_REVIEWS = '/reviews/GET_SPOT_REVIEWS'
 const CREATE_REV = '/reviews/CREATE_REV'
@@ -33,6 +32,7 @@ export const spotRevThunk = (spotId) => async (dispatch) => {
     if(res.ok) {
         const data = await res.json()
         dispatch(getSpotRev(data))
+        return res
     }
 } 
 
@@ -50,7 +50,7 @@ export const createRevthunk = (input, spotId) => async (dispatch) => {
 }
 
 export const delRevThunk = (reviewId) => async (dispatch) => {
-    const res = await csrfFetch(`api/reviews/${reviewId}`, {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     })
     if(res.ok) {
@@ -58,14 +58,19 @@ export const delRevThunk = (reviewId) => async (dispatch) => {
     }
 }
 
+const normalizeData = (data) => {
+    const obj = {};
+    data.forEach(place => obj[place.id] = place)
+    return obj
+}
+
 // reducers
 export default function reviewReducer(state = {}, action) {
     switch (action.type) {
         case GET_SPOT_REVIEWS: {
             const newState = {}
-            action.review.Reviews.forEach(review => {
-                newState[review.id] = review
-            });
+            const revArr = normalizeData(action.review.Reviews)
+            newState['Reviews'] = revArr
             return newState
         }
         case CREATE_REV: {

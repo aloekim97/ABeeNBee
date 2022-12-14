@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import './CreateSpot.css'
-import { addImg } from "../../store/image";
+import { addImg } from "../../store/spots";
 
 
 export default function CreateSpot() {
@@ -20,8 +20,7 @@ export default function CreateSpot() {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [image, setImage] = useState('')
-    const [previewImage, setPreviewImage] = useState('')
+    const [url, setUrl] = useState('https://a0.muscache.com/im/pictures/df317766-2647-4791-9830-2a7cf61c9b8e.jpg?im_w=720')
     const [errors, setErrors] = useState([])
     
 
@@ -37,22 +36,20 @@ export default function CreateSpot() {
                     city,
                     state,
                     country,
-                    lat: 1,
-                    lng: 1,
+                    lat,
+                    lng,
                     name,
                     description,
                     price
         }
-        let newSpot = await dispatch(createThunk(info))
-        const spotId = await newSpot.id
+        const newSpot = await dispatch(createThunk(info))
 
         const imageInfo = {
-            spotId: spotId,
-            url: image,
+            url: url,
             preview: true 
         }
-        let spotImage = await dispatch(addImg(imageInfo, spotId))
-        await history.push('/')
+        dispatch(addImg(imageInfo, newSpot))
+        history.push('/')
     }
 
 
@@ -122,8 +119,8 @@ export default function CreateSpot() {
                 <div>
                     <input placeholder="Url"
                         type='text'
-                        value={previewImage}
-                        onChange={e => setPreviewImage(e.target.value)}
+                        value={url}
+                        onChange={e => setUrl(e.target.value)}
                         required
                     />
                 </div>

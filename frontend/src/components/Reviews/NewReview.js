@@ -16,17 +16,16 @@ export default function NewReview() {
 
     const user = useSelector(state => state.session.user)
 
+
     const onSub = async (e) => {
         e.preventDefault();
-
-        if(stars < 1 || stars > 5) setErrors('Stars must be between 1 and 5')
-        if(errors.length) return 
 
         const input = {
             review,
             stars
         }
-        let newRev = await dispatch(createRevthunk(input, spotId))
+
+        await dispatch(createRevthunk(input, spotId))
         await history.push(`/spots/${spotId}`)
     }
 

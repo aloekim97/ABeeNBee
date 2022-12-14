@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import * as spotsActions from "../../store/spots";
@@ -17,16 +17,21 @@ export default function SpotDetail() {
     const user = useSelector(state => state.session.user)
     const reviews = useSelector(state => state.reviews.Reviews)
 
+    useEffect(() => {
+        dispatch(spotsActions.detailThunk(spotId))
+    }, [dispatch, spotId])
+
+    useEffect(() => {
+        dispatch(reviewsActions.spotRevThunk(spotId))
+    }, [dispatch, spotId])
+
+    
     const deleteSpot = async (e) => {
         e.preventDefault();
         await dispatch(spotsActions.deleteThunk(spotId))
         await history.push(`/`)
     }
 
-    useEffect(() => {
-        dispatch(reviewsActions.spotRevThunk(spotId))
-        dispatch(spotsActions.detailThunk(spotId))
-    }, [dispatch, spotId])
 
 
     if(!spot) return null
@@ -52,10 +57,17 @@ export default function SpotDetail() {
                     <img className="main-img" src={spot.SpotImages[0].url}></img>
                 </div>
                 <div className="smaller-img">
-                    <img className="box-one" src={spot.SpotImages[1].url} />
-                    <img className="box-two" src={spot.SpotImages[2].url} />
-                    <img className="box-three" src={spot.SpotImages[3].url} />
-                    <img className="box-four" src={spot.SpotImages[4].url} />
+                        {spot.SpotImages[1] ? (<img className='box-one' src={spot.SpotImages[1].url}></img>) : <p>No Image Available</p>}
+                   
+                    
+                        {spot.SpotImages[2] ? (<img className='box-two' src={spot.SpotImages[2].url}></img>) : <p>No Image Available</p>}
+                   
+                   
+                        {spot.SpotImages[3] ? (<img className='box-three' src={spot.SpotImages[3].url}></img>) : <p>No Image Available</p>}
+                   
+                   
+                        {spot.SpotImages[4] ? (<img className='box-four' src={spot.SpotImages[4].url}></img>) : <p>No Image Available</p>}
+                   
                 </div>
             </div>
             <div className="info">
@@ -88,8 +100,8 @@ export default function SpotDetail() {
             </div>
             <div className='spotrevs'>
                 {reviews && Object.values(reviews).length > 0 ? Object.values(reviews).map((review) => (
-                    <SpotRevs key={`${review.id}`} review={review} spot={spot} />
-                )): <p>No reviews</p>}
+                    <SpotRevs key={`review-${review.id}`} review={review} spot={spot} />
+                )) : <p>No reviews</p>}
             </div>
             <div className="create-rev">
                 {user && spot.Owner.id !== user.id && (<NavLink className='link-to-create' to={`/spots/${spotId}/reviews/newreview`}>Leave A Review</NavLink>)}

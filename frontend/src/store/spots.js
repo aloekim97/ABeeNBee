@@ -6,6 +6,7 @@ const CREATE_SPOT = 'spots/CREATE_SPOT';
 const EDIT_SPOT = 'spots/EDIT_SPOT'
 const DELETE_SPOT = 'spots/DELETE_SPOT'
 const GET_USER_SPOT = 'spots/GET_USER_SPOT'
+const CREATE = '/spots/CREATE_IMAGE'
 
 
 //actions
@@ -51,6 +52,13 @@ const userSpot = (payload) => {
     }
 }
 
+const create = (image, spot) => {
+    return {
+        type: CREATE,
+        image,
+        spot
+    }
+}
 
 //hunky thunk
 export const allSpotsThunk = () => async (dispatch) => {
@@ -88,6 +96,17 @@ export const createThunk = (info) => async (dispatch) => {
     const spot = await res.json()
     dispatch(createSpot(spot))
     return spot
+}
+
+export const addImg = (imageInfo, spot) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spot.id}/images`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(imageInfo)
+    })
+    const img = await response.json()
+    dispatch(create(img))
+    return img
 }
 
 export const editThunk = (edits, spotId) => async (dispatch) => {
@@ -158,6 +177,8 @@ export default function spotsReducer(state = {}, action) {
             const userSpot = normalizeData(action.payload.Spots)
             newState['UserSpots'] = userSpot;
             return newState;
+        case CREATE:
+            newState = {...state, [action.spot.id]: {...action.spot, previewImage: action.img.url}}
         default:
             return state;
     }
