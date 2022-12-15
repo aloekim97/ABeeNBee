@@ -35,8 +35,8 @@ function ProfileButton({ user, setLogin, setShowModal }) {
     <>
     <div className="menu">
       <button onClick={openMenu} className="ihatethisbutton">
-        <i class="fa-solid fa-circle-user"></i>
-        <i class='fa fa-bars'></i>
+        <i class='fa fa-bars fa-2x'></i>
+        <i class="fa-solid fa-circle-user fa-2x"></i>
       </button>
       <div className="dropdown" >
       {showMenu && ( user ?
@@ -44,14 +44,18 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           <div className="username">{user.username}</div>
           <div className="email">{user.email}</div>
           <div>
-            <NavLink className='create-spot-link' to={'/spots/create'}>
-              List Your House 
-            </NavLink>
+            <button className='create-spot-link' >
+              <NavLink className="create-link" to={'/spots/create'}>
+                List Your House 
+              </NavLink>
+            </button>
           </div>
           <div>
-            <NavLink className='user-spots' to={'/spots/user'}>
-              My Spots
-            </NavLink>
+            <button className='user-spots' >
+              <NavLink className="user-link" to={'/spots/user'}>
+                My Spots
+              </NavLink>
+            </button>
           </div>
           <div className>
             <button onClick={logout} className='logout'>Log Out</button>

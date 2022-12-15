@@ -1,34 +1,27 @@
-.your-spots-container{
+/* .your-spots-container{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+} */
+
+.myhouse{
+    width: 50%;
+}
+
+.card{
+    width: 100%;
 }
 
 .one-spot{
-    width: 35%;
-    height: auto;
-    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
-.name{
+.spot-info{
+    
+}
+
+.hname{
     text-decoration: none;
-}
-
-.price{
-    text-decoration: none;
-}
-
-.location{
-    text-decoration: none;
-}
-
-.edit-button{
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-}
-
-.delete-button{
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
 }

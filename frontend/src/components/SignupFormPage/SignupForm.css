@@ -1,4 +1,59 @@
-.signup{
+.signupform{
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.up{
+    border-radius: 15px;
+    padding: 3%;
+    width: 100%;
+    background-color: rgb(235, 36, 116);
+    padding-top: 3%;
+    border: none;
+}
+
+
+.box3{
+    padding: 5%;
+    border: solid rgb(234, 234, 234) 1px;
+    font-size: 20px;
+}
+
+
+
+.passw{
+    display: flex;
+    flex-direction: column;
+}
+
+.confirmpass{
+    padding-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.user{
+    display: flex;
+    flex-direction: column;
+}
+
+.eemail{
+    display: flex;
+    flex-direction: column;
+}
+
+.last{
+    display: flex;
+    flex-direction: column;
+}
+
+.first{
     display: flex;
     flex-direction: column;
 }

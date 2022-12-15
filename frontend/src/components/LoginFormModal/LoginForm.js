@@ -24,30 +24,31 @@ function LoginForm({ setShowModal }) {
 
   return (
     <form className='loginform' onSubmit={handleSubmit}>
+      <h1 className="title">Log In</h1>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <label>
-        Username or Email
-        <input
+      <label className="name">
+        <input className="box1"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
+          placeholder="Username or Email"
           required
         />
       </label>
-      <label className>
-        Password
-        <input
+      <label className="pass">
+        <input className="box2"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button className="log" type="submit">Log In</button>
     </form>
   );
 }

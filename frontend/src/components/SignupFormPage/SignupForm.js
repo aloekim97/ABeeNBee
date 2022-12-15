@@ -36,65 +36,66 @@ function SignupForm({ setShowModal }) {
   };
 
   return (
-    <form className="signup" onSubmit={handleSubmit}>
+    <form className="signupform" onSubmit={handleSubmit}>
+      <h1 className="title">Sign Up</h1>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        First Name
-        <input
+      <label className="first">
+        <input className="box1"
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
+          placeholder="First Name"
           required
         />
       </label>
-      <label>
-        Last Name
-        <input
+      <label className="last">
+        <input className="box3"
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          placeholder="Last Name"
           required
         />
       </label>
-      <label>
-        Email
-        <input
+      <label className="eemail">
+        <input className="box3"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
           required
         />
       </label>
-      <label>
-        Username
-        <input
+      <label className="user">
+        <input className="box3"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
           required
         />
       </label>
-      <label>
-        Password
-        <input
+      <label className="passw">
+        <input className="box3"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
           required
         />
       </label>
-      <label>
-        Confirm Password
-        <input
+      <label className="confirmpass">
+        <input className="box2"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          placeholder="Confirm Password"
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className="up" type="submit">Sign Up</button>
     </form>
   );
 }

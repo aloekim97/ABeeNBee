@@ -1,8 +1,95 @@
 .entire-create-page{
+    width: 45%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.list{
+    display: flex;
+    justify-content: center;
+}
+.descbox{
+    height: 100px;
+    /* width: 208px; */
+    resize: none;
+    padding: 5%;
+    border-radius: 0px 0px 8px 8px;
+    border: solid rgb(234, 234, 234) 1px;
+    font-size: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+
+.home{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border: solid;
- 
+}
 
+.addy{
+    display: flex;
+    flex-direction: column;
+}
+
+.city{
+    display: flex;
+    flex-direction: column;
+}
+
+.state{
+    display: flex;
+    flex-direction: column;
+}
+
+.country{
+    display: flex;
+    flex-direction: column;
+}
+
+.lat{
+    display: flex;
+    flex-direction: column;
+}
+
+.lng{
+    display: flex;
+    flex-direction: column;
+}
+
+.url{
+    display: flex;
+    flex-direction: column;
+}
+
+.price{
+    display: flex;
+    flex-direction: column;
+}
+
+.desc{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3%;
+}
+
+.box4{
+    padding: 5%;
+    border: solid rgb(234, 234, 234) 1px;
+    font-size: 20px;
+}
+
+.create-submit-button{
+    border-radius: 15px;
+    padding: 3%;
+    width: 100%;
+    background-color: rgb(235, 36, 116);
+    padding-top: 3%;
+    border: none;
+}
+
+.create{
+    display: flex;
+    flex-direction: column;
 }

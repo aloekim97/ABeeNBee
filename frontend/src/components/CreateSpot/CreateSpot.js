@@ -55,78 +55,86 @@ export default function CreateSpot() {
 
     return (
         <div className='entire-create-page'>
-            <h1>Create New Spot</h1>
+            <h1 className="list">List Your Home</h1>
             <ul>
                 {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
             <form onSubmit={onSub} className="create">
-                <div>
-                    <input placeholder="Name"
+                <div className="home">
+                    <input className="box1"
+                        placeholder="Name"
                         type={'text'}
                         value={name}
                         onChange={e => setName(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="Address"
+                <div className="addy">
+                    <input className="box3"
+                        placeholder="Address"
                         type='text'
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="City"
+                <div className="city">
+                    <input className="box3"
+                        placeholder="City"
                         type='text'
                         value={city}
                         onChange={e => setCity(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="State"
+                <div className="state">
+                    <input className="box3"
+                        placeholder="State"
                         type='text'
                         value={state}
                         onChange={e => setState(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="Country"
+                <div className="country">
+                    <input className="box3"
+                        placeholder="Country"
                         type='text'
                         value={country}
                         onChange={e => setCountry(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="Lat"
-                    type="number"
-                    value={lat}
-                    onChange={e => setLat(e.target.value)}
-                    requried
+                <div className="lat">
+                    <input className="box3"
+                        placeholder="Lat"
+                        type="number"
+                        value={lat}
+                        onChange={e => setLat(e.target.value)}
+                        requried
                     />
                 </div>
-                <div>
-                    <input placeholder="Lng"
-                    type="number"
-                    value={lng}
-                    onChange={e => setLng(e.target.value)}
-                    requried
+                <div className="lng">
+                    <input className="box3"
+                        placeholder="Lng"
+                        type="number"
+                        value={lng}
+                        onChange={e => setLng(e.target.value)}
+                        requried
                     />
                 </div>
-                <div>
-                    <input placeholder="Url"
+                <div className="url">
+                    <input className="box3"
+                        placeholder="Url"
                         type='text'
                         value={url}
                         onChange={e => setUrl(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <div id="price/night"></div>
-                    <input placeholder="Price/night"
+                <div className="price">
+                    <input className="box4"
+                        placeholder="Price/night"
                         id="price"
                         type='number'
                         value={price}
@@ -134,8 +142,9 @@ export default function CreateSpot() {
                         required
                     />
                 </div>
-                <div>
-                    <textarea placeholder="Description"
+                <div className="desc">
+                    <textarea className="descbox"
+                        placeholder="Description"
                         type='text'
                         value={description}
                         onChange={e => setDescription(e.target.value)}

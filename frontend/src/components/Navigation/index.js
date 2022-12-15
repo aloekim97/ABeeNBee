@@ -34,8 +34,9 @@ function Navigation({ isLoaded }){
         <div>
             <div className='the-bar'>
                 <NavLink exact to="/" className="logo">
-                    <img className='img' src={require('../../images/favicon.jpeg')}></img>
-                    ABeeNBee</NavLink>
+                    <img className='bnbimg' src={require('../../images/favicon.jpeg')} alt='favicon' />
+                    <h2 className='projname'>ABeeNBee</h2>
+                    </NavLink>
                 {isLoaded && (
                     <ProfileButton
                         user={sessionUser}
