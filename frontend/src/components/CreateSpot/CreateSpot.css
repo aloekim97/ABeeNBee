@@ -6,6 +6,7 @@
 .list{
     display: flex;
     justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .descbox{
     height: 100px;
@@ -78,6 +79,7 @@ input::-webkit-inner-spin-button {
     padding: 5%;
     border: solid rgb(234, 234, 234) 1px;
     font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .create-submit-button{
@@ -88,6 +90,7 @@ input::-webkit-inner-spin-button {
     padding-top: 3%;
     border: none;
     cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .create{

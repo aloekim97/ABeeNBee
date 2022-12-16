@@ -21,13 +21,6 @@ export default function NewReview() {
     const onSub = async (e) => {
         e.preventDefault();
 
-        const err=[];
-        if(!review.length) err.push('Please leave a review')
-        
-        setErrors(err)
-        if(errors.length) return
-
-
         const input = {
             review,
             stars

@@ -7,6 +7,7 @@
 .title{
     display: flex;
     justify-content: center;
+    
 }
 
 .up{
@@ -23,6 +24,7 @@
     padding: 5%;
     border: solid rgb(234, 234, 234) 1px;
     font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 

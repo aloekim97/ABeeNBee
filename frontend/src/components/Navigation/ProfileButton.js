@@ -36,7 +36,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
     <div className="rightside">
       <div className="linkss">
         {user ? <NavLink to={'/spots/create'}>
-          <button className="other-link">airbnb your home</button>
+          <button className="other-link">ABeeNBee Your Home</button>
         </NavLink> : <NavLink to={'/login'}><button className="other-link">airbnb your home</button></NavLink>}
       </div>
       <div className="menu">

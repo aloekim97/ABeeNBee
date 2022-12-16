@@ -28,8 +28,14 @@ img{
 
 .numrev{
     display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .cost{
     width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loca{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

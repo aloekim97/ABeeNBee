@@ -5,6 +5,10 @@
     padding: 0 9%;
 }
 
+.guests{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .detail-img{
     width: 100%;
     height: 100%;
@@ -63,10 +67,14 @@
 .ratings{
     padding-right: 3px;
     display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
 }
 
 .star-container{
     display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
 }
 
 .thestar{
@@ -81,33 +89,40 @@
 
 .review-count{
     padding-right: 3px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
 .spotrevs{
     padding-bottom: 10px;
     padding-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .super{
     padding-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .super-detail{
     color: lightgray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .check{
     padding-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .check-in{
     color: lightgray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .cancel{
     padding-top: 10px;
     padding-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .hype{
@@ -191,8 +206,9 @@
 }
 
 .del-edit{
-    display: flex;
-    height: 25%;
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 35vh;
 }
 
 .link-to-create{
@@ -207,4 +223,33 @@
 
 .link-to-create:hover{
     background-color: rgb(235, 235, 235);
+}
+
+.spot-name{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.area{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.owner{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.fname{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.yrev{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.delete-butt{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.link-to-create{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }

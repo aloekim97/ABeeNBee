@@ -27,12 +27,13 @@ i {
 
 .other-link{
     height: 42px;
-    width: 140px;
+    width: 170px;
     border-radius: 21px;
     cursor: pointer;
     align-items: center;
     background-color: white;
     border: 1px solid rgb(255, 255, 255);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .other-link:hover{
@@ -60,6 +61,7 @@ i {
     text-decoration: none;
     font-size: 15px;
     padding: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .email{
@@ -77,6 +79,7 @@ i {
     text-align: left;
     font-size: 15px;
     padding: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .logout:hover{
@@ -93,6 +96,7 @@ i {
     font-size: 15px;
     padding: 5%;
     color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .create-spot-link:hover{
@@ -115,6 +119,7 @@ i {
     text-align: left;
     font-size: 15px;
     padding: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .user-spots:hover{
@@ -125,6 +130,7 @@ i {
     text-decoration: none;
     color:black;
     width: 80%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .profile-dropdown{
@@ -146,6 +152,7 @@ i {
     text-align: left;
     font-size: 15px;
     padding: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .login:hover {
@@ -164,6 +171,7 @@ i {
     border-bottom: solid rgb(234, 234, 234) 1px;
     display: flex;
     flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .signup:hover{
@@ -179,6 +187,7 @@ i {
     text-align: left;
     font-size: 15px;
     padding: 5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .auto:hover{
