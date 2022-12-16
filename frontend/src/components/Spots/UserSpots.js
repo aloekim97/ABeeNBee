@@ -26,7 +26,7 @@ export default function UserSpots({spot}) {
     
     return(
         <div className="your-spot-container">
-        <div className="your spots">
+        <div className="your-spots">
             {Object.values(spots).map((spot) => {
                 return(
                     <div className="the-spots" key={spot.id}>
@@ -35,13 +35,12 @@ export default function UserSpots({spot}) {
                                 <div className="one-spot">
                                     <img src={`${spot.previewImage}`} alt={spot.id} className='myhouse' />
                                 </div>
-                                <div className="spot-info">
-                                    <div className="hname">{spot.name}</div>
-                                    <div className="hlocation">{spot.city}, {spot.state}</div>
-                                    <div className="hprice">{spot.price}/night</div>
-                                </div>
                             </div>
                         </NavLink>
+                        <div className="spot-inf">
+                            <div className="hname">{spot.name}</div>
+                            <div className="hlocation">{spot.city}, {spot.state}</div>
+                        </div>
                     </div>
                 )
             })}

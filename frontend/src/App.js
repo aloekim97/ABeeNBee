@@ -10,6 +10,7 @@ import SpotDetail from "./components/Spots/SpotDetail";
 import NewReview from "./components/Reviews/NewReview";
 import UserSpots from "./components/Spots/UserSpots";
 import EditSpot from "./components/Spots/EditSpot";
+import LoginForm from "./components/LoginFormModal/LoginForm";
 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         <Switch>
           <Route exact path='/'>
             <AllSpots />
+          </Route>
+          <Route exact path='/login'>
+            <LoginForm />
           </Route>
           <Route exact path='/spots/create'>
             <CreateSpot />

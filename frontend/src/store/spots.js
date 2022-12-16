@@ -7,7 +7,7 @@ const EDIT_SPOT = 'spots/EDIT_SPOT'
 const DELETE_SPOT = 'spots/DELETE_SPOT'
 const GET_USER_SPOT = 'spots/GET_USER_SPOT'
 const CREATE = '/spots/CREATE_IMAGE'
-
+const CLEAR = '/spots/CLEAR'
 
 //actions
 const getSpots = (payload) => {
@@ -57,6 +57,12 @@ const create = (image, spot) => {
         type: CREATE,
         image,
         spot
+    }
+}
+
+export const clearSpots = () => {
+    return {
+        type: CLEAR
     }
 }
 
@@ -157,6 +163,8 @@ export const normalizeData = (data) => {
 export default function spotsReducer(state = {}, action) {
     let newState = {...state}
     switch (action.type) {
+        case CLEAR:
+            return {}
         case GET_SPOTS:
             const allSpots = normalizeData(action.payload.Spots);
             newState["Spots"] = allSpots;

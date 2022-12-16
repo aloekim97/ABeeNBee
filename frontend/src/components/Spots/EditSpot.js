@@ -3,6 +3,7 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { editThunk } from "../../store/spots";
+import './EditSpot.css'
 
 export default function EditSpot() {
     const dispatch = useDispatch()
@@ -80,71 +81,79 @@ export default function EditSpot() {
     };
     
     return (
-        <div className='entire-create-page'>
+        <div className='edit-page'>
             <form onSubmit={onSub} className="create">
-                <h1>Edit Your Spot!</h1>
+                <h1 className="list">Edit Your Spot!</h1>
                 <ul>
                     {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-                <div>
-                    <input placeholder="Name"
+                <div className="home">
+                    <input className="box1"
+                        placeholder="Name"
                         type={'text'}
                         value={name}
                         onChange={e => setName(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="Address"
+                <div className="addy">
+                    <input className="box3"
+                        placeholder="Address"
                         type='text'
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="City"
+                <div className="city">
+                    <input className="box3"
+                        placeholder="City"
                         type='text'
                         value={city}
                         onChange={e => setCity(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="State"
+                <div className="state">
+                    <input className="box3"
+                        placeholder="State"
                         type='text'
                         value={state}
                         onChange={e => setState(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="Country"
+                <div className="country">
+                    <input className="box3"
+                        placeholder="Country"
                         type='text'
                         value={country}
                         onChange={e => setCountry(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <input placeholder="Lat"
+                <div className="lat">
+                    <input className="box3"
+                    placeholder="Lat"
                     type="number"
                     value={lat}
                     onChange={e => setLat(e.target.value)}
                     requried
                     />
                 </div>
-                <div>
-                    <input placeholder="Lng"
+                <div className="lng">
+                    <input className="box3"
+                    placeholder="Lng"
                     type="number"
                     value={lng}
                     onChange={e => setLng(e.target.value)}
                     requried
                     />
                 </div>
-                <div>
+                <div className="price">
                     <div id="price/night"></div>
-                    <input placeholder="Price/night"
+                    <input className="box3"
+                        placeholder="Price/night"
                         id="price"
                         type='number'
                         value={price}
@@ -152,8 +161,9 @@ export default function EditSpot() {
                         required
                     />
                 </div>
-                <div>
-                    <textarea placeholder="Description"
+                <div className="desc">
+                    <textarea className="descbox"
+                        placeholder="Description"
                         type='text'
                         value={description}
                         onChange={e => setDescription(e.target.value)}

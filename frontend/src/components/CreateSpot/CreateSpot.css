@@ -1,7 +1,7 @@
 .entire-create-page{
-    width: 45%;
-    margin-left: 25%;
-    margin-right: 25%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .list{
     display: flex;
@@ -87,6 +87,7 @@ input::-webkit-inner-spin-button {
     background-color: rgb(235, 36, 116);
     padding-top: 3%;
     border: none;
+    cursor: pointer;
 }
 
 .create{

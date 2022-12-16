@@ -33,9 +33,15 @@ function ProfileButton({ user, setLogin, setShowModal }) {
 
   return (
     <>
-    <div className="menu">
+    <div className="rightside">
+      <div className="linkss">
+        {user ? <NavLink to={'/spots/create'}>
+          <button className="other-link">airbnb your home</button>
+        </NavLink> : <NavLink to={'/login'}><button className="other-link">airbnb your home</button></NavLink>}
+      </div>
+      <div className="menu">
       <button onClick={openMenu} className="ihatethisbutton">
-        <i class='fa fa-bars fa-2x'></i>
+        <i class='fa fa-bars fa'></i>
         <i class="fa-solid fa-circle-user fa-2x"></i>
       </button>
       <div className="dropdown" >
@@ -44,18 +50,18 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           <div className="username">{user.username}</div>
           <div className="email">{user.email}</div>
           <div>
-            <button className='create-spot-link' >
-              <NavLink className="create-link" to={'/spots/create'}>
+            <NavLink className="create-link" to={'/spots/create'}>
+              <button className='create-spot-link' >
                 List Your House 
-              </NavLink>
-            </button>
+              </button>
+            </NavLink>
           </div>
           <div>
-            <button className='user-spots' >
-              <NavLink className="user-link" to={'/spots/user'}>
+            <NavLink className="user-link" to={'/spots/user'}>
+              <button className='user-spots' >
                 My Spots
-              </NavLink>
-            </button>
+              </button>
+            </NavLink>
           </div>
           <div className>
             <button onClick={logout} className='logout'>Log Out</button>
@@ -79,6 +85,7 @@ function ProfileButton({ user, setLogin, setShowModal }) {
           </div>
         </div>)
       )}
+      </div>
       </div>
       </div>
     </>

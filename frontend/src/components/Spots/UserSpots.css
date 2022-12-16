@@ -4,22 +4,27 @@
 
 } */
 
-.myhouse{
-    width: 50%;
-}
 
-.card{
-    width: 100%;
+.your-spots{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 1%;
+    padding-top: 3%;
 }
 
 .one-spot{
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    width: 97%;
 }
 
-.spot-info{
-    
+.myhouse{
+    width: 100%;
+    height: 70%;
+}
+
+.spot-inf{
+    display: flex;
+    flex-direction: column;
 }
 
 .hname{

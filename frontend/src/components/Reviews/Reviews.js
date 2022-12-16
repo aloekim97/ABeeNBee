@@ -16,14 +16,19 @@ export default function SpotRevs({review}) {
         e.preventDefault()
         dispatch(delRevThunk(review.id))
         .then(() => dispatch(spotRevThunk(spotId)))
+        .then(() => dispatch(detailThunk(spotId)))
     }
+    
 
     return (
         <div className='review-container'>
-            <div>{review.User.firstName}</div>
-            <div>{review.review}</div>
+            <div className='icon-user'>
+                <div className='icon'><i class="fa-solid fa-circle-user fa-2x"></i></div>
+                <div className='fname'>{review.User.firstName}</div>
+            </div>
+            <div className='yrev'>{review.review}</div>
             {user && review.User.id === user.id && (
-                    <button className='review-button' onClick={clickDelete}>Delete <i className="fa-solid fa-trash"></i></button>
+                <button className='delete-butt' onClick={clickDelete}>Delete Your Review</button>
                 )}
         </div>
     )

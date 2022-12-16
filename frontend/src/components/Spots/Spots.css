@@ -1,11 +1,13 @@
 .spots-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 1%;
     padding-left: 3%;
     padding-right: 3%;
 }
 .single-spot{
-    width: 97%;
+    width: 100%;
     padding: 1%;
 }
 
@@ -16,4 +18,18 @@
 
 img{
     border-radius: 5px;
+}
+
+.spot-deets{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.numrev{
+    display: flex;
+}
+
+.cost{
+    width: 100%;
 }

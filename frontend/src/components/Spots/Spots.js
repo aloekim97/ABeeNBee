@@ -23,10 +23,13 @@ export default function AllSpots() {
                             <NavLink to={`/spots/${spot.id}`}>
                                 <img src={spot.previewImage} alt="house-img" className="images"/>
                             </NavLink>
-                            <div className="spot-desc">
-                                <div>{spot.city}, {spot.state}</div>
-                                <div>{spot.name}</div>
-                                <div>${spot.price}/night</div>
+                            <div className="spot-deets">
+                                <div className="loca">{spot.city}, {spot.state}</div>
+                                <div className="numrev">
+                                <i className="fa fa-star"></i>
+                                {spot.AvgRating ? spot.AvgRating : 0}
+                                </div>
+                                <div className="cost">${spot.price} night</div>
                             </div>
                         </div>
                     )

@@ -36,6 +36,8 @@
     border-bottom: solid rgb(234, 234, 234) 1px;
     height: 65px;
     padding: .5%;
+    padding-right: 3%;
+    padding-left: 2%;
 }
 
 .bnbimg{

@@ -1,8 +1,7 @@
 .leave-rev{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    
+    flex-direction: column;
 }
 
 .submit{
@@ -14,5 +13,51 @@
 .del-butt{
     border: none;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.icon-user{
+    display: flex;
+}
+
+.yrev{
+    padding-bottom: 1%;
+}
+
+.icon{
+    padding-right: 1%;
+}
+
+.rev-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leave-rev{
+    display: flex;
+    flex-direction: column;
+}
+
+.revbox{
+    width: 100%;
+}
+
+.writerev{
+    height: 100px;
+    width: 99%;
+    resize: none;
+    border-radius: 8px;
+    border: solid rgb(234, 234, 234) 1px;
+    font-size: 20px;
+}
+
+.leavestar{
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.star{
+    color: gold;
     cursor: pointer;
 }

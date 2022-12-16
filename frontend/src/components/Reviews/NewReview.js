@@ -4,6 +4,7 @@ import { Redirect, useHistory, useParams } from "react-router-dom";
 import { createRevthunk } from "../../store/reviews";
 import { detailThunk } from "../../store/spots";
 import './NewRev.css'
+import StarRating from "./Star";
 
 
 export default function NewReview() {
@@ -20,6 +21,13 @@ export default function NewReview() {
     const onSub = async (e) => {
         e.preventDefault();
 
+        const err=[];
+        if(!review.length) err.push('Please leave a review')
+        
+        setErrors(err)
+        if(errors.length) return
+
+
         const input = {
             review,
             stars
@@ -32,30 +40,26 @@ export default function NewReview() {
     return(
         <div className="rev-container">
             <form className="leave-rev" onSubmit={onSub}>
-                <h1>Leave a review</h1>
+                <h1 className="list">Leave a review</h1>
                 <ul className="errors">
                     {errors && <li key={errors}>{errors}</li>}
                 </ul>
-                <label>
-                    <textarea className="review-inputs"
+                <label className="revbox">
+                    <textarea className="writerev"
                     value={review}
                     onChange={e => setReview(e.target.value)}
                     placeholder='Leave a review'
                     required
                     />
                 </label>
-                <label>Stars:
-                    <input className="star-input"
-                    type='number'
+                <label className="leavestar">
+                    < StarRating
                     value={stars}
-                    min={1}
-                    max={5}
                     onChange={e => setStars(e.target.value)}
-                    placeholder='Star Rating'
                     required
                     />
                 </label>
-                <button className="submit" type="submit">Submit</button>
+                <button className="create-submit-button" type="submit">Submit</button>
             </form>
         </div>
     )

@@ -8,8 +8,12 @@
     align-items: center;
     background-color: white;
     border: 1px solid rgb(197, 192, 192);
-    padding-right: 3%;
 }
+
+.ihatethisbutton:hover{
+    box-shadow: 3px 3px rgb(234, 234, 234);
+}
+
 i {
     padding: 1px;
     width: 90%;
@@ -18,11 +22,32 @@ i {
 .menu {
     position: relative;
     padding-right: 3%;
+    padding-left: 2%;
+}
+
+.other-link{
+    height: 42px;
+    width: 140px;
+    border-radius: 21px;
+    cursor: pointer;
+    align-items: center;
+    background-color: white;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.other-link:hover{
+    background-color: rgb(248, 248, 248);
+}
+
+
+.rightside{
+    display: flex;
+    align-content: center;
 }
 
 .dropdown{
     position: absolute;
-    padding-top: 7%;
+    margin-top: 5%;
     right: 35%;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
@@ -77,6 +102,7 @@ i {
 .create-link{
     text-decoration: none;
     color:black;
+    width: 150%;
 }
 .user-spots{
     text-decoration: none;
@@ -98,6 +124,7 @@ i {
 .user-link{
     text-decoration: none;
     color:black;
+    width: 80%;
 }
 
 .profile-dropdown{
@@ -135,6 +162,8 @@ i {
     font-size: 15px;
     padding: 5%;
     border-bottom: solid rgb(234, 234, 234) 1px;
+    display: flex;
+    flex-direction: column;
 }
 
 .signup:hover{

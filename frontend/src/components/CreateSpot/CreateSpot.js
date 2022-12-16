@@ -11,36 +11,49 @@ export default function CreateSpot() {
     const dispatch = useDispatch()
     const history = useHistory()
     
+    const [name, setName] = useState('')
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [country, setCountry] = useState('')
     const [lat, setLat] = useState('')
     const [lng, setLng] = useState('')
-    const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [url, setUrl] = useState('https://a0.muscache.com/im/pictures/df317766-2647-4791-9830-2a7cf61c9b8e.jpg?im_w=720')
+    const [url, setUrl] = useState('')
     const [errors, setErrors] = useState([])
     
 
     const user = useSelector(state => state.session.user)
     if(!user) return <Redirect to='/' />
-    if(errors.length) return
 
     const onSub = async (e) => {
         e.preventDefault();
         
+        let err=[];
+        if(name.length < 3) err.push('Must be a valid name')
+        if(address.length < 5) err.push('Must be a valid address')
+        if(city.length < 2) err.push('Must be a valid city')
+        if(state.length !== 2) err.push('Must be a valid state')
+        if(country.length < 3) err.push('Must be a valid country')
+        if(url.length < 10) err.push('Must be a valid url')
+        if(name.length < 1) err.push('price must be greater than $1')
+        if(description.length < 5) err.push('please leave a description')
+
+        setErrors(err)
+
+        if (err.length) return errors
+
         const info = {
-                    address,
-                    city,
-                    state,
-                    country,
-                    lat,
-                    lng,
-                    name,
-                    description,
-                    price
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
         }
         const newSpot = await dispatch(createThunk(info))
 
@@ -48,18 +61,18 @@ export default function CreateSpot() {
             url: url,
             preview: true 
         }
-        dispatch(addImg(imageInfo, newSpot))
-        history.push('/')
+        await dispatch(addImg(imageInfo, newSpot))
+        await history.push('/')
     }
 
 
     return (
         <div className='entire-create-page'>
             <h1 className="list">List Your Home</h1>
+            <form onSubmit={onSub} className="create">
             <ul>
                 {Object.values(errors).map((error, idx) => <li key={idx}>{error}</li>)}
             </ul>
-            <form onSubmit={onSub} className="create">
                 <div className="home">
                     <input className="box1"
                         placeholder="Name"
