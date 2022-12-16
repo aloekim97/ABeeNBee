@@ -32,13 +32,13 @@ export default function CreateSpot() {
         
         let err=[];
         if(name.length < 3) err.push('Must be a valid name')
-        if(address.length < 5) err.push('Must be a valid address')
+        if(address.length < 3) err.push('Must be a valid address')
         if(city.length < 2) err.push('Must be a valid city')
-        if(state.length !== 2) err.push('Must be a valid state')
+        if(state.length < 2) err.push('Must be a valid state')
         if(country.length < 3) err.push('Must be a valid country')
         if(url.length < 10) err.push('Must be a valid url')
         if(name.length < 1) err.push('price must be greater than $1')
-        if(description.length < 5) err.push('please leave a description')
+        if(description.length < 2) err.push('please leave a description')
 
         setErrors(err)
 
@@ -61,8 +61,8 @@ export default function CreateSpot() {
             url: url,
             preview: true 
         }
-        await dispatch(addImg(imageInfo, newSpot))
-        await history.push('/')
+        dispatch(addImg(imageInfo, newSpot))
+        history.push('/')
     }
 
 

@@ -76,7 +76,7 @@ export default function EditSpot() {
             setDescription('')
             setPrice('')
             setErrors([])
-            history.push('/');
+            history.push(`/spots/${spotId}`);
         })
     };
     

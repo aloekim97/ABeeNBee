@@ -10,6 +10,7 @@ export default function SpotRevs({review}) {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
     const {spotId} = useParams()
+    const spot = useSelector(state => state.spots.SpotDetails)
     
     
     const clickDelete = (e) => {
