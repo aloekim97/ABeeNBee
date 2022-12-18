@@ -35,7 +35,6 @@ export default function SpotDetail({review}) {
     }
     
 
-
     if(!spot) return null
 
     return(

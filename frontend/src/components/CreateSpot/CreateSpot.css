@@ -1,7 +1,7 @@
 .entire-create-page{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
 }
 .list{
     display: flex;
@@ -27,6 +27,7 @@ input::-webkit-inner-spin-button {
 .home{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .addy{
