@@ -35,8 +35,9 @@
     border-radius: 15px;
     padding: 3%;
     width: 100%;
-    background-color: rgb(235, 36, 116);
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
     border: none;
+    cursor: pointer;
 }
 
 .title{

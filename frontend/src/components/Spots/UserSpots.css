@@ -1,25 +1,21 @@
-/* .your-spots-container{
-    display: flex;
-    flex-direction: column;
-
-} */
-
-
 .your-spots{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-auto-rows: 1fr;
     gap: 1%;
-    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1%;
 }
 
 .one-spot{
-    width: 97%;
+    width: 100%;
+    height: 70%;
 }
 
 .myhouse{
+    height: 228px;
     width: 100%;
-    height: 70%;
 }
 
 .spot-inf{

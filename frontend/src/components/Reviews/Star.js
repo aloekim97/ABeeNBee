@@ -9,7 +9,7 @@ const Star = ({ marked, starId }) => {
   };
   
   const StarRating = ({ value }) => {
-    const [rating, setRating] = useState(parseInt(value) || 0);
+    const [rating, setRating] = useState(parseInt(value) || 1);
     const [selection, setSelection] = useState(0);
   
     const hoverOver = event => {

@@ -94,7 +94,7 @@ module.exports = {
     },
     {
       spotId: 4,
-      url: 'https://a0.muscache.com/im/pictures/f3e42ca3-6d2a-47e5-af3a-481ec297cf54.jpg?im_w=960',
+      url: 'https://a0.muscache.com/im/pictures/f3e42ca3-6d2a-47e5-af3a-481ec297cf54.jpg?im_w=720',
       preview: true
     },
     {
